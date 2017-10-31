@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buscas;
+package factory;
 
 import SistemaBusca.GoogleBusca;
 import SistemaBusca.MetodoDeBusca;
@@ -13,7 +13,7 @@ import SistemaBusca.MetodoDeBusca;
  * @author hidan
  */
 public class SearchFactoryBuilder {
-    public static SistemaBusca createFactory(MetodoDeBusca mdb){
+    public static SistemaBuscaFactory createFactory(MetodoDeBusca mdb){
         switch (mdb){
             case Google:
                 return new GoogleBusca();

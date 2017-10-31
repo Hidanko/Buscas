@@ -5,26 +5,19 @@
  */
 package SistemaBusca;
 
-import buscas.SistemaBusca;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.jsoup.Jsoup;
-import org.jsoup.select.Elements;
+import factory.SistemaBuscaFactory;
 
 /**
  *
  * @author hidan
  */
-public class GoogleBusca implements SistemaBusca {
+public class GoogleBusca implements SistemaBuscaFactory {
 
-    SistemaBusca googleBusca;
-    org.jsoup.select.Elements links;
-
+    SistemaBuscaFactory googleBusca;
+    String URL = "http://www.google.com/search?q=";
+    String imagem = "/src/image/google.png";
     @Override
-    public SistemaBusca getInstance() {
+    public SistemaBuscaFactory getInstance() {
         if (googleBusca == null) {
             googleBusca = new GoogleBusca();
         }
@@ -32,19 +25,13 @@ public class GoogleBusca implements SistemaBusca {
     }
 
     @Override
-    public Elements busca(String texto) {
-        String google = "http://www.google.com/search?q=";
-        String search = texto;
-        String charset = "UTF-8";
-        String userAgent = "ExampleBot 1.0 (+http://example.com/bot)"; // Change this to your company's name and bot homepage!
-        try {
-           links  = Jsoup.connect(google + URLEncoder.encode(search, charset)).userAgent(userAgent).get().select(".g>.r>a");
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(GoogleBusca.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GoogleBusca.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return links;
+    public String getURL() {
+        return URL;
+    }
+
+    @Override
+    public String definirImagem() {
+        return imagem;
     }
 
 }

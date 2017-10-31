@@ -5,18 +5,16 @@
  */
 package frontEnd;
 
+import SistemaBusca.Buscador;
 import SistemaBusca.MetodoDeBusca;
-import buscas.SearchFactoryBuilder;
-import buscas.SistemaBusca;
+import factory.SearchFactoryBuilder;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import factory.SistemaBuscaFactory;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,16 +22,19 @@ import org.jsoup.select.Elements;
  */
 public class View extends javax.swing.JFrame {
 
-    Controle controle;
-    SistemaBusca sistemaBusca;
+    
+    SistemaBuscaFactory sistemaBusca;
     Elements resultados;
     DefaultTableModel modelTable;
+    Buscador buscador;
 
     public View() {
-        Controle controle = new Controle(this);
+        
         initComponents();
         modelTable = (DefaultTableModel) tabelaPrincipal.getModel(); 
         tipoDeBusca(MetodoDeBusca.Google); // Google como busca padrão
+        buscador = new Buscador();
+       // logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
 
     }
 
@@ -49,6 +50,8 @@ public class View extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         buttonPesquisar = new javax.swing.JButton();
         textoBusca = new javax.swing.JTextField();
+        logo = new javax.swing.JPanel();
+        logoLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         botaoGoogle = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -69,21 +72,44 @@ public class View extends javax.swing.JFrame {
 
         textoBusca.setToolTipText("Campo de Busca");
 
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/google.png"))); // NOI18N
+
+        javax.swing.GroupLayout logoLayout = new javax.swing.GroupLayout(logo);
+        logo.setLayout(logoLayout);
+        logoLayout.setHorizontalGroup(
+            logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoLayout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(logoLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        logoLayout.setVerticalGroup(
+            logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoLabel)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(textoBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                .addGap(124, 124, 124)
+                .addComponent(textoBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonPesquisar)
                 .addContainerGap())
+            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 77, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPesquisar)
                     .addComponent(textoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -128,7 +154,7 @@ public class View extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -156,15 +182,15 @@ public class View extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -174,8 +200,8 @@ public class View extends javax.swing.JFrame {
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
         resultados = new Elements();
-        resultados = sistemaBusca.busca(textoBusca.getText());
-        modelTable.setRowCount(0);
+        resultados = buscador.buscar(textoBusca.getText(), sistemaBusca);
+        modelTable.setRowCount(0); // Zerar a tabela para preencher denovo
         for (Element resultado : resultados) {
 
             String title = resultado.text();
@@ -186,8 +212,8 @@ public class View extends javax.swing.JFrame {
                ex.printStackTrace();
             }
 
-            if (!url.startsWith("http")) {
-                continue; // Ads/news/etc.
+            if (!url.startsWith("http")) { // Ignorar propagandas
+                continue; 
             }
 
             modelTable.addRow(new Object[]{title, url});
@@ -197,6 +223,7 @@ public class View extends javax.swing.JFrame {
 
     private void botaoGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGoogleActionPerformed
         tipoDeBusca(MetodoDeBusca.Google);
+      //  logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
     }//GEN-LAST:event_botaoGoogleActionPerformed
 
     /**
@@ -226,6 +253,12 @@ public class View extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -238,6 +271,7 @@ public class View extends javax.swing.JFrame {
     public void tipoDeBusca(MetodoDeBusca mdb) {
 
         sistemaBusca = SearchFactoryBuilder.createFactory(mdb);
+//        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
 
     }
 
@@ -252,6 +286,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel logo;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JTable tabelaPrincipal;
     private javax.swing.JTextField textoBusca;
     // End of variables declaration//GEN-END:variables
