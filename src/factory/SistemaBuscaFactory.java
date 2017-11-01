@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package factory;
-
-import org.jsoup.select.Elements;
 /**
  *
  * @author hidan

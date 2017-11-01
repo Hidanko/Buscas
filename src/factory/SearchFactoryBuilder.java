@@ -7,6 +7,7 @@ package factory;
 
 import SistemaBusca.GoogleBusca;
 import SistemaBusca.MetodoDeBusca;
+import SistemaBusca.YoutubeBusca;
 
 /**
  *
@@ -17,7 +18,8 @@ public class SearchFactoryBuilder {
         switch (mdb){
             case Google:
                 return new GoogleBusca();
-                
+            case Youtube:
+                return new YoutubeBusca();
                 
             
         }

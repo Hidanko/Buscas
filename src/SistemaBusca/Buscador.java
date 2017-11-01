@@ -22,6 +22,7 @@ public class Buscador {
 
     org.jsoup.select.Elements links;
     String url;
+    String charset = "UTF-8";
 
     public Buscador() {
     }
@@ -29,8 +30,8 @@ public class Buscador {
     public Elements buscar(String search, SistemaBuscaFactory sistema) {
 
         url = sistema.getURL();
-        String charset = "UTF-8";
-        String userAgent = "ExampleBot 1.0 (+http://example.com/bot)"; // Change this to your company's name and bot homepage!
+
+        String userAgent = "Gustavo Nemeth Bot 1.0";
 
         try {
             links = Jsoup.connect(url + URLEncoder.encode(search, charset)).userAgent(userAgent).get().select(".g>.r>a");

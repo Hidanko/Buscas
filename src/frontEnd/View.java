@@ -14,6 +14,12 @@ import javax.swing.table.DefaultTableModel;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import factory.SistemaBuscaFactory;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -54,7 +60,7 @@ public class View extends javax.swing.JFrame {
         logoLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         botaoGoogle = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoYoutube = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -124,7 +130,12 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        botaoYoutube.setText("Youtube");
+        botaoYoutube.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoYoutubeActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -138,7 +149,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoGoogle)
-                    .addComponent(jButton2)
+                    .addComponent(botaoYoutube)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -149,7 +160,7 @@ public class View extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(botaoGoogle)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(botaoYoutube)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
@@ -173,6 +184,11 @@ public class View extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tabelaPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPrincipalMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabelaPrincipal);
@@ -226,6 +242,25 @@ public class View extends javax.swing.JFrame {
       //  logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
     }//GEN-LAST:event_botaoGoogleActionPerformed
 
+    private void tabelaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPrincipalMouseClicked
+            URI oURL = null;
+        try {
+            oURL = new URI((String) tabelaPrincipal.getModel().getValueAt(tabelaPrincipal.getSelectedRow(), 1));
+            System.out.println(oURL.toString());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            Desktop.getDesktop().browse(oURL);
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tabelaPrincipalMouseClicked
+
+    private void botaoYoutubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoYoutubeActionPerformed
+        tipoDeBusca(MetodoDeBusca.Youtube);
+    }//GEN-LAST:event_botaoYoutubeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -278,8 +313,8 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoGoogle;
+    private javax.swing.JButton botaoYoutube;
     private javax.swing.JButton buttonPesquisar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
