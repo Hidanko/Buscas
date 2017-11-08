@@ -6,6 +6,7 @@
 package SistemaBusca;
 
 import factory.SistemaBuscaFactory;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,8 +31,8 @@ public class GoogleBusca implements SistemaBuscaFactory {
     }
 
     @Override
-    public String definirImagem() {
-        return imagem;
+    public ImageIcon definirImagem() {
+        return new ImageIcon(imagem);
     }
 
 }

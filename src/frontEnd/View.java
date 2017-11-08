@@ -242,7 +242,6 @@ public class View extends javax.swing.JFrame {
 
     private void botaoGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGoogleActionPerformed
         tipoDeBusca(MetodoDeBusca.Google);
-        logoLabel.setIcon(new javax.swing.ImageIcon(getResource(sistemaBusca.definirImagem())));
     }//GEN-LAST:event_botaoGoogleActionPerformed
 
     private void tabelaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPrincipalMouseClicked
@@ -309,10 +308,7 @@ public class View extends javax.swing.JFrame {
     public void tipoDeBusca(MetodoDeBusca mdb)  {
 
         sistemaBusca = SearchFactoryBuilder.createFactory(mdb);
-        ImageIcon imagemIcon = new ImageIcon(sistemaBusca.definirImagem());
-        File TESTE = new File(sistemaBusca.definirImagem()); // testar se o endereço da imagem existe
-        System.out.println( TESTE.exists());
-        logoLabel.setIcon(imagemIcon);
+        logoLabel.setIcon(sistemaBusca.definirImagem()); // ERRO AQUI
         
     }
 
