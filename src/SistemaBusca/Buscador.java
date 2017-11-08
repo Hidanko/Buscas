@@ -31,7 +31,7 @@ public class Buscador {
 
         url = sistema.getURL();
 
-        String userAgent = "Gustavo Nemeth Bot 1.0";
+        String userAgent = "Nemeth Bot";
 
         try {
             links = Jsoup.connect(url + URLEncoder.encode(search, charset)).userAgent(userAgent).get().select(".g>.r>a");

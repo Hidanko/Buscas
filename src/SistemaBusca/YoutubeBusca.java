@@ -15,7 +15,7 @@ public class YoutubeBusca implements SistemaBuscaFactory {
 
     SistemaBuscaFactory youtubeBusca;
     String URL;
-    String imagem = "/src/image/google.png"; // Arrumar imagem do Youtube
+    String imagem = "/image/youtube.png"; 
 
     public YoutubeBusca() {
         this.URL = "http://www.youtube.com/results?search_query=";

@@ -15,11 +15,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import factory.SistemaBuscaFactory;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -239,7 +242,7 @@ public class View extends javax.swing.JFrame {
 
     private void botaoGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGoogleActionPerformed
         tipoDeBusca(MetodoDeBusca.Google);
-      //  logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
+        logoLabel.setIcon(new javax.swing.ImageIcon(getResource(sistemaBusca.definirImagem())));
     }//GEN-LAST:event_botaoGoogleActionPerformed
 
     private void tabelaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPrincipalMouseClicked
@@ -303,11 +306,14 @@ public class View extends javax.swing.JFrame {
         });
     }
 
-    public void tipoDeBusca(MetodoDeBusca mdb) {
+    public void tipoDeBusca(MetodoDeBusca mdb)  {
 
         sistemaBusca = SearchFactoryBuilder.createFactory(mdb);
-//        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(sistemaBusca.definirImagem())));
-
+        ImageIcon imagemIcon = new ImageIcon(sistemaBusca.definirImagem());
+        File TESTE = new File(sistemaBusca.definirImagem()); // testar se o endereço da imagem existe
+        System.out.println( TESTE.exists());
+        logoLabel.setIcon(imagemIcon);
+        
     }
 
 
