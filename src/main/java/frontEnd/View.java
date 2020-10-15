@@ -8,22 +8,20 @@ package frontEnd;
 import SistemaBusca.Buscador;
 import SistemaBusca.MetodoDeBusca;
 import factory.SearchFactoryBuilder;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import javax.swing.table.DefaultTableModel;
+import factory.SistemaBuscaFactory;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import factory.SistemaBuscaFactory;
-import java.awt.Desktop;
-import java.io.File;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 /**
  *
